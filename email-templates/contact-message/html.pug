@@ -1,0 +1,18 @@
+extends ../base
+block content
+  include ../content
+    block emailBody
+      p
+        b A message has been received!
+      p
+        b From
+        br
+        | #{name} (#{email})
+      p
+        b Source
+        br
+        | #{source}
+      p
+        b Message
+        br
+        | #{message}

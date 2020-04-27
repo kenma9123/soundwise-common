@@ -1,0 +1,24 @@
+extends ../base
+block content
+  include ../publisher
+  include ../content
+    block emailBody
+      p Hi there!
+      p This is to remind you that you've got an invitation from #{publisherName} to subscribe to&nbsp;
+        if soundcast.public
+          a(href=`https://mysoundwise.com/soundcasts/${soundcast.id}` target='_blank') #{soundcast.title}
+        if !soundcast.public
+          strong #{soundcast.title}
+        | &nbsp;on Soundwise.
+      p If you don't have the Soundwise app on your phone--
+      p
+        strong iPhone user: Download the app&nbsp;
+          a(href='https://itunes.apple.com/us/app/soundwise-learn-on-the-go/id1290299134?ls=1&mt=8' target='_blank') here
+          | .
+      p
+        strong Android user: Download the app&nbsp;
+          a(href='https://play.google.com/store/apps/details?id=com.soundwisecms_mobile_android' target='_blank') here
+          | .
+      p Once you have the app, simply log in using the email address that this email was sent to. Your new soundcast will be loaded automatically.
+      p The Soundwise Team
+  include ../promotion

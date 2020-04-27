@@ -1,0 +1,10 @@
+extends ../base
+block content
+  include ../content
+    block emailBody
+      p Hello #{publisherName},
+      p Your scheduled episode&nbsp;
+        b #{episodeTitle}
+        | &nbsp;has been successfully published.
+      p You can now review the published episode from your dashboard.
+      p Folks at Soundwise

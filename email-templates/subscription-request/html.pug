@@ -1,0 +1,9 @@
+extends ../base
+block content
+  include ../content
+    block emailBody
+      p Hi #{name},
+      p As requested, please register for&nbsp;
+        b #{title}&nbsp;
+        a(href=`https://mysoundwise.com/soundcasts/${soundcastId}` target='_blank') here
+        | .

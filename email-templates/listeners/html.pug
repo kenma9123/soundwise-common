@@ -1,0 +1,15 @@
+extends ../base
+block content
+  include ../publisher
+  include ../content
+    block emailBody
+      p Hi&nbsp;
+        span [%first_name | there%]!
+      p #{publisherName} just published&nbsp;
+        strong #{episodeTitle} in&nbsp;
+        if landingPage
+          a(href=`https://mysoundwise.com/soundcasts/${soundcastId}` target='_blank') #{soundcastTitle}
+        if !landingPage
+          | #{soundcastTitle}
+      span Go check it out on the Soundwise app!
+  include ../promotion

@@ -1,0 +1,14 @@
+extends ../base
+block content
+  include ../content
+    block emailBody
+      p Hi there!
+      p Your soundwave video is ready! To download, click&nbsp;
+        a(href=`${videoUrl}` target='_blank') here
+        | .
+      p Please note: your download link will expire in 24 hours.
+      p Folks at Soundwise
+      if isFree
+        p p.s. Need your videos to be longer than 1 minute? All of Soundwise's publisher plans allow unlimited soundwave videos of up to 1 hour each. Check out what&nbsp;
+          a(href='https://mysoundwise.com' target='_blank') Soundwise offers&nbsp;
+          | .

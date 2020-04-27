@@ -1,0 +1,10 @@
+if soundwiseBranding
+  table(role='presentation' cellspacing='0' cellpadding='0' border='0' align='center' width='100%' style='max-width: 680px; font-family: sans-serif; color: #888888; font-size: 12px; line-height: 140%;')
+    tr
+      td(style='border-top: 3px dashed #eee;')
+        div.x-gmail-data-detectors(style='padding: 20px 40px; margin: 0 auto; font-family: sans-serif; font-size: 12px; line-height: 140%; color: #888888;')
+          if isSubscribed
+            include unsubscribe
+          div(style='font-size: 14px;') © #{year} Soundwise | 4075 Wilson Blvd 8th Floor, Arlington, VA 22203, United States
+if !soundwiseBranding && isSubscribed
+  include unsubscribe

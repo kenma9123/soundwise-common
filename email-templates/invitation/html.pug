@@ -1,0 +1,7 @@
+extends ../base
+block content
+  include ../publisher
+  include ../content
+    block emailBody
+      | !{bodyTemplate}
+  include ../promotion

@@ -1,0 +1,13 @@
+extends ../base
+block content
+  include ../content
+    block emailBody
+      p Hello #{publisherName},
+      p Your episode&nbsp;
+        b #{episodeTitle}
+        | &nbsp;has been successfully processed
+        if published
+          | &nbsp;and #{publishMessage}
+      if !published
+        p You can now review and publish the processed episode from your dashboard.
+      p Folks at Soundwise
