@@ -1,0 +1,12 @@
+extends ../base
+block content
+  include ../publisher
+  include ../content
+    block emailBody
+      p Hi #{inviteeName}!
+      p This is an invitation for you to join the admin team of #{publisherName} on Soundwise. You can sign up for your admin account&nbsp;
+        a(href=`https://app.mysoundwise.com/signup/admin/${publisherId}` target='_blank') here.
+      p If you already have an account on Soundwise, you can log in and join your team&nbsp;
+        a(href=`https://app.mysoundwise.com/signin/admin/${publisherId}` target='_blank') here.
+      p These links are unique for you. Please do not share.
+  include ../promotion
