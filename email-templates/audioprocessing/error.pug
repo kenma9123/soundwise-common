@@ -1,0 +1,11 @@
+extends ../base
+block content
+  include ../content
+    block emailBody
+      p Hi #{publisherName}!
+      p We had a problem processing the audio of&nbsp;
+        b #{episodeTitle}
+        | .
+      p Please try to re-upload the episode audio or try a different file format.
+      p If you keep receiving this email after a few tries, please contact support and attach your files for samples.
+      p Folks at Soundwise
