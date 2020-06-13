@@ -3,6 +3,7 @@
 const path = require('path');
 const moment = require('moment');
 const isEmpty = require('lodash/isEmpty');
+const flattenDeep = require('lodash/flattenDeep');
 const head = require('lodash/head');
 const last = require('lodash/last');
 const ffmpeg = require('../../common/ffmpeg');
@@ -45,13 +46,21 @@ module.exports = (filepath = '') => {
 
       // parse from output
       // expected output is [[ 'silence_start', '0' ], [ 'silence_end', '2.7402' ], [ 'silence_duration', '2.7402' ]]
-      const output = parseSilenceDetectInChunks(stdout + '\n' + stderr);
+      const chunks = parseSilenceDetectInChunks(stdout + '\n' + stderr);
+      processingLogger.log(`TRIM start/end silence chunks ${JSON.stringify(chunks)}`);
+
+      // if chunks is empty then resolve
+      const flatChunks = flattenDeep(chunks);
+      if (isEmpty(flatChunks[0])) {
+        processingLogger.log(`NO TRIM start/end silence detected for file ${filepath}`);
+        return resolve(filepath);
+      }
 
       // determine start and end of trimming
       const [start, end] = await new Promise(async mresolve => {
         // get start of trim
         const start = await new Promise(sresolve => {
-          const firstSilenceChunk = head(output);
+          const firstSilenceChunk = head(chunks);
           if (!isEmpty(firstSilenceChunk)) {
             const [start, end] = firstSilenceChunk;
             const [, startValue] = start;
@@ -69,9 +78,9 @@ module.exports = (filepath = '') => {
         // get end of trim
         const end = await new Promise(sresolve => {
           // if there are multiple outputs
-          if (output.length > 1) {
+          if (chunks.length > 1) {
             // get the last occurence of silence chunks
-            const lastSilenceChunk = last(output);
+            const lastSilenceChunk = last(chunks);
             if (!isEmpty(lastSilenceChunk)) {
               const [start, end] = lastSilenceChunk;
               const [, startValue] = start;

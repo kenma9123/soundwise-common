@@ -34,7 +34,7 @@ module.exports = (filepath = '', duration = 1) => {
 
       // parse from output
       const chunks = parseSilenceDetectInChunks(stdout + '\n' + stderr);
-      // console.log('removeAllSilence', chunks);
+      processingLogger.log(`Remove all silence chunks ${JSON.stringify(chunks)}`);
 
       // if chunks is empty then resolve
       const flatChunks = flattenDeep(chunks);
