@@ -1,0 +1,9 @@
+extends ../base
+block content
+  include ../publisher
+  include ../content
+    block emailBody
+      p Hello #{firstName},
+      p #{episodeTitle} is now available in #{soundcastTitle}.
+      p To listen, please log in to the Soundwise app. Enjoy!
+  include ../promotion
