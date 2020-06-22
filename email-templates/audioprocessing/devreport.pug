@@ -1,0 +1,30 @@
+extends ../base
+block content
+  include ../content
+    block emailBody
+      p A publiher had a problem processing an audio, check the information below
+      table
+        tbody
+          tr
+            td(style='width:120px;vertical-align:top;padding:5px 0;')
+              b Soundcast ID
+            td
+              a(href=`https://soundwise-a8e6f.firebaseio.com/soundcasts/${soundcastId}` target='_blank') #{soundcastId}
+          tr
+            td(style='width:120px;vertical-align:top;padding:5px 0;')
+              b Episode ID
+            td
+              a(href=`https://soundwise-a8e6f.firebaseio.com/episodes/${episodeId}` target='_blank') #{episodeId}
+          tr
+            td(style='width:120px;vertical-align:top;padding:5px 0;')
+              b Publisher ID
+            td
+              a(href=`https://soundwise-a8e6f.firebaseio.com/publishers/${publisherId}` target='_blank') #{publisherId}
+          tr
+            td(style='width:120px;vertical-align:top;padding:5px 0;')
+              b Woker ID
+            td #{jobId}
+          tr
+            td(style='width:120px;vertical-align:top;padding:5px 0;')
+              b Failed Reason
+            td #{failedReason}
